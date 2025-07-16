@@ -57,7 +57,7 @@ export default function ChatInterface() {
   return (
     <div className="flex flex-col h-[600px]">
       {/* Chat Header */}
-      <div className="bg-gradient-to-r from-farm-green to-leaf-green p-4 text-white">
+      <div className="bg-gradient-to-r from-green-600 to-green-700 p-4 text-white">
         <div className="flex items-center space-x-3">
           <MessageCircle className="text-2xl" />
           <div>
@@ -72,7 +72,7 @@ export default function ChatInterface() {
         <div className="space-y-4">
           {isLoading ? (
             <div className="flex justify-center py-8">
-              <Loader2 className="h-8 w-8 animate-spin text-farm-green" />
+              <Loader2 className="h-8 w-8 animate-spin text-green-600" />
             </div>
           ) : chatHistory.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
@@ -84,7 +84,7 @@ export default function ChatInterface() {
               <div key={chat.id} className="space-y-4">
                 {/* User Message */}
                 <div className="flex space-x-3 justify-end">
-                  <div className="bg-farm-green rounded-lg p-3 max-w-xs lg:max-w-md">
+                  <div className="bg-green-600 rounded-lg p-3 max-w-xs lg:max-w-md">
                     <p className="text-sm text-white">{chat.message}</p>
                   </div>
                   <div className="bg-gray-300 p-2 rounded-full w-8 h-8 flex items-center justify-center">
@@ -94,7 +94,7 @@ export default function ChatInterface() {
 
                 {/* AI Response */}
                 <div className="flex space-x-3">
-                  <div className="bg-farm-green p-2 rounded-full w-8 h-8 flex items-center justify-center">
+                  <div className="bg-green-600 p-2 rounded-full w-8 h-8 flex items-center justify-center">
                     <MessageCircle className="text-white w-4 h-4" />
                   </div>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex-1">
@@ -103,7 +103,7 @@ export default function ChatInterface() {
                         if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
                           return (
                             <div key={index} className="flex items-start gap-2 my-1">
-                              <span className="text-farm-green">•</span>
+                              <span className="text-green-600">•</span>
                               <span>{line.replace(/^[•-]\s*/, '')}</span>
                             </div>
                           );
@@ -127,11 +127,11 @@ export default function ChatInterface() {
           {/* Loading indicator for new message */}
           {sendMessageMutation.isPending && (
             <div className="flex space-x-3">
-              <div className="bg-farm-green p-2 rounded-full w-8 h-8 flex items-center justify-center">
+              <div className="bg-green-600 p-2 rounded-full w-8 h-8 flex items-center justify-center">
                 <MessageCircle className="text-white w-4 h-4" />
               </div>
               <div className="bg-gray-100 rounded-lg p-3">
-                <Loader2 className="h-4 w-4 animate-spin text-farm-green" />
+                <Loader2 className="h-4 w-4 animate-spin text-green-600" />
               </div>
             </div>
           )}
@@ -152,7 +152,7 @@ export default function ChatInterface() {
           <Button
             onClick={handleSendMessage}
             disabled={!message.trim() || sendMessageMutation.isPending}
-            className="bg-farm-green hover:bg-green-600"
+            className="bg-green-600 hover:bg-green-700"
           >
             {sendMessageMutation.isPending ? (
               <Loader2 className="h-4 w-4 animate-spin" />

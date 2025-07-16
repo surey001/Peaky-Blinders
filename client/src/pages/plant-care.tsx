@@ -7,10 +7,10 @@ export default function PlantCare() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-8">
         <div className="flex items-center justify-center space-x-3 mb-4">
-          <div className="bg-leaf-green p-3 rounded-lg">
+          <div className="bg-green-600 p-3 rounded-lg">
             <Leaf className="text-white text-2xl" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Plant Care Guide</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Plant Care Guide</h1>
         </div>
         <p className="text-gray-600">Search for plants and get detailed care instructions and growing tips</p>
       </div>
