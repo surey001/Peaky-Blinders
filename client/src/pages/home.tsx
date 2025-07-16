@@ -130,34 +130,42 @@ export default function Home() {
       <Card className="p-8 mb-12">
         <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Button 
-            variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
-          >
-            <Calendar className="text-2xl mb-2" />
-            <span className="text-sm font-medium">Crop Calendar</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
-          >
-            <Cloud className="text-2xl mb-2" />
-            <span className="text-sm font-medium">Weather Info</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
-          >
-            <TrendingUp className="text-2xl mb-2" />
-            <span className="text-sm font-medium">Market Prices</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
-          >
-            <Book className="text-2xl mb-2" />
-            <span className="text-sm font-medium">Learning Hub</span>
-          </Button>
+          <Link href="/crop-calendar">
+            <Button 
+              variant="ghost" 
+              className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group w-full"
+            >
+              <Calendar className="text-2xl mb-2" />
+              <span className="text-sm font-medium">Crop Calendar</span>
+            </Button>
+          </Link>
+          <Link href="/weather-info">
+            <Button 
+              variant="ghost" 
+              className="flex flex-col items-center p-4 h-auto hover:bg-blue-600 hover:text-white group w-full"
+            >
+              <Cloud className="text-2xl mb-2" />
+              <span className="text-sm font-medium">Weather Info</span>
+            </Button>
+          </Link>
+          <Link href="/market-prices">
+            <Button 
+              variant="ghost" 
+              className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group w-full"
+            >
+              <TrendingUp className="text-2xl mb-2" />
+              <span className="text-sm font-medium">Market Prices</span>
+            </Button>
+          </Link>
+          <Link href="/learning-hub">
+            <Button 
+              variant="ghost" 
+              className="flex flex-col items-center p-4 h-auto hover:bg-blue-600 hover:text-white group w-full"
+            >
+              <Book className="text-2xl mb-2" />
+              <span className="text-sm font-medium">Learning Hub</span>
+            </Button>
+          </Link>
         </div>
       </Card>
 

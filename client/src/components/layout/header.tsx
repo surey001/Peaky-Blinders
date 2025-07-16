@@ -3,7 +3,13 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Sprout, Menu } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sprout, Menu, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 import { useTranslation } from "@/lib/translations";
 import VoiceAssistant from "@/components/voice/voice-assistant";
@@ -26,13 +32,20 @@ export default function Header() {
     { path: "/plant-care", label: t("plant_care") },
   ];
 
+  const moreItems = [
+    { path: "/crop-calendar", label: "Crop Calendar" },
+    { path: "/weather-info", label: "Weather Info" },
+    { path: "/market-prices", label: "Market Prices" },
+    { path: "/learning-hub", label: "Learning Hub" },
+  ];
+
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="bg-farm-green p-2 rounded-lg">
+            <div className="bg-green-600 p-2 rounded-lg">
               <Sprout className="text-white text-xl" />
             </div>
             <div>
@@ -49,14 +62,28 @@ export default function Header() {
                   variant="ghost"
                   className={`font-medium ${
                     isActive(item.path)
-                      ? "text-farm-green"
-                      : "text-gray-600 hover:text-farm-green"
+                      ? "text-green-600"
+                      : "text-gray-600 hover:text-green-600"
                   }`}
                 >
                   {item.label}
                 </Button>
               </Link>
             ))}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="font-medium text-gray-600 hover:text-green-600">
+                  More <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {moreItems.map((item) => (
+                  <DropdownMenuItem key={item.path} asChild>
+                    <Link href={item.path}>{item.label}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Language Selector and Mobile Menu */}
@@ -89,7 +116,7 @@ export default function Header() {
                         variant="ghost"
                         className={`w-full justify-start ${
                           isActive(item.path)
-                            ? "text-farm-green bg-green-50"
+                            ? "text-green-600 bg-green-50"
                             : "text-gray-600"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -98,6 +125,20 @@ export default function Header() {
                       </Button>
                     </Link>
                   ))}
+                  <div className="border-t pt-4 mt-4">
+                    <p className="text-xs text-gray-500 mb-2 px-2">More Features</p>
+                    {moreItems.map((item) => (
+                      <Link key={item.path} href={item.path}>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-600"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Button>
+                      </Link>
+                    ))}
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>

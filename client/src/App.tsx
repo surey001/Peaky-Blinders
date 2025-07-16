@@ -9,6 +9,10 @@ import Home from "@/pages/home";
 import Chat from "@/pages/chat";
 import DiseaseDetection from "@/pages/disease-detection";
 import PlantCare from "@/pages/plant-care";
+import CropCalendar from "@/pages/crop-calendar";
+import WeatherInfo from "@/pages/weather-info";
+import MarketPrices from "@/pages/market-prices";
+import LearningHub from "@/pages/learning-hub";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
@@ -19,6 +23,10 @@ function Router() {
       <Route path="/chat" component={Chat} />
       <Route path="/disease-detection" component={DiseaseDetection} />
       <Route path="/plant-care" component={PlantCare} />
+      <Route path="/crop-calendar" component={CropCalendar} />
+      <Route path="/weather-info" component={WeatherInfo} />
+      <Route path="/market-prices" component={MarketPrices} />
+      <Route path="/learning-hub" component={LearningHub} />
       <Route component={NotFound} />
     </Switch>
   );
