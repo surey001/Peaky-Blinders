@@ -79,31 +79,58 @@ export function useVoiceAssistant() {
       {
         route: '/chat',
         patterns: [
-          /\b(chat|talk|speak|conversation|assistant|ai)\b/,
-          /\b(அரட்டை|பேச)\b/,
-          /\b(ಚಾಟ್|ಮಾತು)\b/,
-          /\b(चैट|बात|सहायक)\b/,
-          /\b(ചാറ്റ്|സംസാര)\b/
+          // English
+          /\b(chat|talk|speak|conversation|assistant|ai|message|communicate)\b/,
+          // Tamil
+          /\b(அரட்டை|பேச|உரையாடல்|சொல்|பேசு|செய்தி|தொடர்பு)\b/,
+          /\b(aradai|pesu|uraiyaadal|sol|peshu|seythi|thodarbu)\b/,
+          // Kannada  
+          /\b(ಚಾಟ್|ಮಾತು|ಮಾತನಾಡು|ಸಂವಾದ|ಸಹಾಯಕ|ಸಂದೇಶ)\b/,
+          /\b(chat|maatu|maatanaadu|samvaada|sahaayaka|sandesha)\b/,
+          // Hindi
+          /\b(चैट|बात|बातचीत|सहायक|संदेश|बोलना|कहना)\b/,
+          /\b(baat|baatcheet|sahaayak|sandesh|bolana|kahana)\b/,
+          // Malayalam
+          /\b(ചാറ്റ്|സംസാരം|സംഭാഷണം|സഹായി|സന്ദേശം|പറയുക)\b/,
+          /\b(samsaaram|sambhaashanam|sahaayaki|sandesham|parayuka)\b/
         ]
       },
       {
         route: '/disease-detection',
         patterns: [
-          /\b(disease|health|sick|problem|detect|analyze|diagnosis)\b/,
-          /\b(நோய்|உடல்நலம்|பகுப்பாய்வு)\b/,
-          /\b(ರೋಗ|ಆರೋಗ್ಯ|ಪತ್ತೆ)\b/,
-          /\b(रोग|बीमारी|स्वास्थ्य|पता)\b/,
-          /\b(രോഗം|ആരോഗ്യം|കണ്ടെത്തൽ)\b/
+          // English
+          /\b(disease|health|sick|problem|detect|analyze|diagnosis|ill|infection|symptom)\b/,
+          // Tamil
+          /\b(நோய்|உடல்நலம்|பகுப்பாய்வு|நோய்கண்டறிதல்|வியாதி|பிரச்சனை)\b/,
+          /\b(noy|udalnalam|pakuppaayvu|noykandaridhaal|viyaadhi|prachanai)\b/,
+          // Kannada
+          /\b(ರೋಗ|ಆರೋಗ್ಯ|ಪತ್ತೆ|ವಿಶ್ಲೇಷಣೆ|ಕಾಯಿಲೆ|ಸಮಸ್ಯೆ)\b/,
+          /\b(roga|aarogya|patte|vishleshanè|kaayile|samasye)\b/,
+          // Hindi  
+          /\b(रोग|बीमारी|स्वास्थ्य|पता|जांच|विश्लेषण|समस्या)\b/,
+          /\b(rog|beemaaree|svaasthya|pataa|jaanch|vishleshana|samasya)\b/,
+          // Malayalam
+          /\b(രോഗം|ആരോഗ്യം|കണ്ടെത്തൽ|വിശകലനം|അസുഖം|പ്രശ്നം)\b/,
+          /\b(rogam|aarogyam|kandethal|vishakalạnam|asukham|prashnam)\b/
         ]
       },
       {
         route: '/plant-care',
         patterns: [
-          /\b(plant|care|grow|garden|cultivation|tips)\b/,
-          /\b(தாவர|பராமரிப்பு|வளர்ப்பு)\b/,
-          /\b(ಸಸ್ಯ|ಆರೈಕೆ|ಬೆಳೆ)\b/,
-          /\b(पौधे|देखभाल|बागवानी)\b/,
-          /\b(സസ്യം|പരിചരണം|കൃഷി)\b/
+          // English
+          /\b(plant|care|grow|garden|cultivation|tips|farming|agriculture|crop)\b/,
+          // Tamil
+          /\b(தாவரம்|பராமரிப்பு|வளர்ப்பு|தோட்டம்|விவசாயம்|பயிர்)\b/,
+          /\b(thaavaram|paraamarippu|valarppu|thottam|vivasaayam|payir)\b/,
+          // Kannada
+          /\b(ಸಸ್ಯ|ಆರೈಕೆ|ಬೆಳೆ|ತೋಟ|ಕೃಷಿ|ಬೆಳೆಗಾರಿಕೆ)\b/,
+          /\b(sasya|aaraike|bele|tota|krishi|belegaarike)\b/,
+          // Hindi
+          /\b(पौधे|देखभाल|बागवानी|खेती|कृषि|फसल)\b/,
+          /\b(paudhe|dekhabhaal|baagavaanee|khetee|krishi|phasal)\b/,
+          // Malayalam
+          /\b(സസ്യം|പരിചരണം|കൃഷി|തോട്ടം|കൃഷിക്കാര്യം|വിള)\b/,
+          /\b(sasyam|paricharanam|krishi|thottam|krishikkaaryam|vila)\b/
         ]
       },
       {
