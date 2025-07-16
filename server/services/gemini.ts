@@ -34,22 +34,31 @@ export interface PlantCareInfo {
 
 export async function getChatResponse(message: string, language: string = "en"): Promise<ChatResponse> {
   try {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("Gemini API key is not configured");
+    }
+
     const languagePrompt = language === "en" ? "" : `Please respond in ${getLanguageName(language)}.`;
     
     const prompt = `You are an expert agricultural assistant helping farmers and gardeners. Provide practical, accurate farming advice based on agricultural best practices. Focus on sustainable farming methods, crop management, pest control, soil health, and plant care. ${languagePrompt} Keep responses helpful and actionable.
 
 User question: ${message}`;
 
+    console.log("Sending request to Gemini with message:", message.substring(0, 50));
+
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       contents: prompt,
     });
+
+    console.log("Received response from Gemini");
 
     return {
       message: response.text || "I'm sorry, I couldn't generate a response. Please try again.",
       language
     };
   } catch (error) {
+    console.error("Gemini API error:", error);
     throw new Error("Failed to get chat response: " + (error as Error).message);
   }
 }
