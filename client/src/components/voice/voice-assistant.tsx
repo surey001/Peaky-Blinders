@@ -46,7 +46,13 @@ export default function VoiceAssistant() {
       </div>
       
       <div className="text-xs text-muted-foreground text-center max-w-xs">
-        {t('voice_commands_hint') || 'Say commands like "open chat", "disease detection", or "plant care"'}
+        <p className="mb-2">Try saying:</p>
+        <div className="space-y-1">
+          <div>"chat" or "talk to assistant"</div>
+          <div>"disease" or "health check"</div>
+          <div>"plant care" or "gardening"</div>
+          <div>"home" or "go back"</div>
+        </div>
       </div>
     </div>
   );

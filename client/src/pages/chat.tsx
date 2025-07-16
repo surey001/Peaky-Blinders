@@ -40,11 +40,26 @@ export default function Chat() {
               <div className="mt-6 text-sm text-muted-foreground">
                 <p className="mb-3 font-medium">Voice Commands:</p>
                 <ul className="space-y-2 text-xs">
-                  <li>• "open chat"</li>
-                  <li>• "disease detection"</li>
-                  <li>• "plant care"</li>
-                  <li>• "go home"</li>
+                  <li className="flex items-center space-x-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span>"chat" or "talk to assistant"</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                    <span>"disease" or "health check"</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>"plant care" or "gardening"</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <span className="w-2 h-2 bg-gray-500 rounded-full"></span>
+                    <span>"home" or "go back"</span>
+                  </li>
                 </ul>
+                <div className="mt-3 p-2 bg-gray-50 rounded text-xs">
+                  💡 The voice assistant now understands natural speech! Just mention keywords like "disease", "plant", "chat", or "home".
+                </div>
               </div>
             </CardContent>
           </Card>

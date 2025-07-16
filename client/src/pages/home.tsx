@@ -39,7 +39,7 @@ export default function Home() {
       {/* Voice Assistant Section */}
       <div className="text-center mb-12">
         <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("voice_assistant")}</h3>
-        <p className="text-gray-600 mb-6">{t("voice_commands_hint") || "Use voice commands to navigate - say things like 'open chat', 'disease detection', or 'plant care'"}</p>
+        <p className="text-gray-600 mb-6">Use voice commands to navigate - say keywords like "chat", "disease", "plant care", or "home"</p>
         <VoiceAssistant />
       </div>
 

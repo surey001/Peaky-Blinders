@@ -23,6 +23,7 @@ export function useVoiceAssistant() {
         recognition.continuous = false;
         recognition.interimResults = false;
         recognition.lang = getLanguageCode(language);
+        recognition.maxAlternatives = 3;
         
         recognition.onstart = () => {
           setIsListening(true);
@@ -34,7 +35,14 @@ export function useVoiceAssistant() {
         
         recognition.onresult = (event: any) => {
           const transcript = event.results[0][0].transcript.toLowerCase().trim();
-          console.log('Voice command:', transcript);
+          console.log('Voice command detected:', transcript);
+          
+          // Show what the user said in a more visible way
+          if (transcript.length > 0) {
+            console.log(`🎤 You said: "${transcript}"`);
+            console.log('🔍 Analyzing command for keywords...');
+          }
+          
           handleVoiceCommand(transcript);
         };
         
@@ -63,72 +71,82 @@ export function useVoiceAssistant() {
   };
 
   const handleVoiceCommand = (command: string) => {
-    const commands = {
-      // English commands
-      'open chat': '/chat',
-      'go to chat': '/chat',
-      'chat': '/chat',
-      'open disease': '/disease-detection',
-      'disease detection': '/disease-detection',
-      'detect disease': '/disease-detection',
-      'open plant care': '/plant-care',
-      'plant care': '/plant-care',
-      'care guide': '/plant-care',
-      'go home': '/',
-      'home': '/',
-      'main page': '/',
-      
-      // Tamil commands
-      'அரட்டை திற': '/chat',
-      'அரட்டை': '/chat',
-      'நோய் கண்டறிதல் திற': '/disease-detection',
-      'நோய் கண்டறிதல்': '/disease-detection',
-      'தாவர பராமரிப்பு திற': '/plant-care',
-      'தாவர பராமரிப்பு': '/plant-care',
-      'முகப்புக்கு செல்': '/',
-      'முகப்பு': '/',
-      
-      // Kannada commands
-      'ಚಾಟ್ ತೆರೆಯಿರಿ': '/chat',
-      'ಚಾಟ್': '/chat',
-      'ರೋಗ ಪತ್ತೆ ತೆರೆಯಿರಿ': '/disease-detection',
-      'ರೋಗ ಪತ್ತೆ': '/disease-detection',
-      'ಸಸ್ಯ ಆರೈಕೆ ತೆರೆಯಿರಿ': '/plant-care',
-      'ಸಸ್ಯ ಆರೈಕೆ': '/plant-care',
-      'ಮುಖ್ಯಕ್ಕೆ ಹೋಗಿ': '/',
-      'ಮುಖ್ಯ': '/',
-      
-      // Hindi commands
-      'चैट खोलें': '/chat',
-      'चैट': '/chat',
-      'रोग का पता लगाना खोलें': '/disease-detection',
-      'रोग का पता लगाना': '/disease-detection',
-      'पौधों की देखभाल खोलें': '/plant-care',
-      'पौधों की देखभाल': '/plant-care',
-      'मुखपृष्ठ पर जाएं': '/',
-      'मुखपृष्ठ': '/',
-      
-      // Malayalam commands
-      'ചാറ്റ് തുറക്കുക': '/chat',
-      'ചാറ്റ്': '/chat',
-      'രോഗ കണ്ടെത്തൽ തുറക്കുക': '/disease-detection',
-      'രോഗ കണ്ടെത്തൽ': '/disease-detection',
-      'സസ്യ പരിചരണം തുറക്കുക': '/plant-care',
-      'സസ്യ പരിചരണം': '/plant-care',
-      'ഹോമിലേക്ക് പോകുക': '/',
-      'ഹോം': '/'
-    };
-
-    // Find matching command
-    const route = commands[command as keyof typeof commands];
+    // Normalize command for flexible matching
+    const normalizedCommand = command.toLowerCase().trim();
     
-    if (route) {
-      setLocation(route);
-      // Provide audio feedback
-      speakFeedback(getNavigationFeedback(route));
+    // Define route patterns with multiple variations and keywords
+    const routePatterns = [
+      {
+        route: '/chat',
+        patterns: [
+          /\b(chat|talk|speak|conversation|assistant|ai)\b/,
+          /\b(அரட்டை|பேச)\b/,
+          /\b(ಚಾಟ್|ಮಾತು)\b/,
+          /\b(चैट|बात|सहायक)\b/,
+          /\b(ചാറ്റ്|സംസാര)\b/
+        ]
+      },
+      {
+        route: '/disease-detection',
+        patterns: [
+          /\b(disease|health|sick|problem|detect|analyze|diagnosis)\b/,
+          /\b(நோய்|உடல்நலம்|பகுப்பாய்வு)\b/,
+          /\b(ರೋಗ|ಆರೋಗ್ಯ|ಪತ್ತೆ)\b/,
+          /\b(रोग|बीमारी|स्वास्थ्य|पता)\b/,
+          /\b(രോഗം|ആരോഗ്യം|കണ്ടെത്തൽ)\b/
+        ]
+      },
+      {
+        route: '/plant-care',
+        patterns: [
+          /\b(plant|care|grow|garden|cultivation|tips)\b/,
+          /\b(தாவர|பராமரிப்பு|வளர்ப்பு)\b/,
+          /\b(ಸಸ್ಯ|ಆರೈಕೆ|ಬೆಳೆ)\b/,
+          /\b(पौधे|देखभाल|बागवानी)\b/,
+          /\b(സസ്യം|പരിചരണം|കൃഷി)\b/
+        ]
+      },
+      {
+        route: '/',
+        patterns: [
+          /\b(home|main|start|beginning|back)\b/,
+          /\b(முகப்பு|வீடு|தொடക்கம்)\b/,
+          /\b(ಮುಖ್ಯ|ಮನೆ|ಪ್ರಾರಂಭ)\b/,
+          /\b(मुख्य|घर|शुरू)\b/,
+          /\b(ഹോം|വീട്|തുടക്കം)\b/
+        ]
+      }
+    ];
+
+    // Find matching route based on patterns
+    let matchedRoute = null;
+    for (const { route, patterns } of routePatterns) {
+      for (const pattern of patterns) {
+        if (pattern.test(normalizedCommand)) {
+          matchedRoute = route;
+          break;
+        }
+      }
+      if (matchedRoute) break;
+    }
+
+    if (matchedRoute) {
+      console.log(`✅ Command matched! Navigating to: ${matchedRoute}`);
+      setLocation(matchedRoute);
+      speakFeedback(getNavigationFeedback(matchedRoute));
     } else {
-      console.log('Command not recognized:', command);
-      speakFeedback(t('voice_command_not_recognized') || 'Command not recognized');
+      console.log('❌ Command not recognized:', command);
+      console.log('💡 Available keywords: chat, talk, disease, health, plant, care, garden, home, back');
+      
+      // Suggest available commands
+      const suggestions = [
+        'Try saying "chat" or "talk to assistant"',
+        'Say "disease" or "health check"', 
+        'Say "plant care" or "gardening"',
+        'Say "home" or "go back"'
+      ];
+      const suggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
+      speakFeedback(`Command not recognized. ${suggestion}`);
     }
   };
 
