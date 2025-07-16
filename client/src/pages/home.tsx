@@ -47,7 +47,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         {/* Chat Module */}
         <Card className="hover:shadow-xl transition-shadow duration-300">
-          <div className="bg-gradient-to-r from-farm-green to-leaf-green p-6 text-white rounded-t-xl">
+          <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white rounded-t-xl">
             <div className="flex items-center space-x-3 mb-4">
               <MessageCircle className="text-2xl" />
               <h3 className="text-xl font-semibold">{t("chat_feature_title")}</h3>
@@ -57,7 +57,7 @@ export default function Home() {
           <CardContent className="p-6">
             <div className="space-y-4 mb-6">
               <div className="flex space-x-3">
-                <div className="bg-farm-green p-2 rounded-full w-8 h-8 flex items-center justify-center">
+                <div className="bg-green-600 p-2 rounded-full w-8 h-8 flex items-center justify-center">
                   <MessageCircle className="text-white text-sm" />
                 </div>
                 <div className="bg-gray-100 rounded-lg p-3 flex-1">
@@ -66,7 +66,7 @@ export default function Home() {
               </div>
             </div>
             <Link href="/chat">
-              <Button className="w-full bg-farm-green hover:bg-green-600">
+              <Button className="w-full bg-green-600 hover:bg-green-700">
                 {t("get_started")}
               </Button>
             </Link>
@@ -98,7 +98,7 @@ export default function Home() {
 
         {/* Plant Care Module */}
         <Card className="hover:shadow-xl transition-shadow duration-300">
-          <div className="bg-gradient-to-r from-leaf-green to-green-600 p-6 text-white rounded-t-xl">
+          <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 text-white rounded-t-xl">
             <div className="flex items-center space-x-3 mb-4">
               <Leaf className="text-2xl" />
               <h3 className="text-xl font-semibold">{t("care_feature_title")}</h3>
@@ -118,7 +118,7 @@ export default function Home() {
               </div>
             </div>
             <Link href="/plant-care">
-              <Button className="w-full bg-leaf-green hover:bg-green-700">
+              <Button className="w-full bg-green-600 hover:bg-green-700">
                 {t("search")}
               </Button>
             </Link>
@@ -132,28 +132,28 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Button 
             variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-farm-green hover:text-white group"
+            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
           >
             <Calendar className="text-2xl mb-2" />
             <span className="text-sm font-medium">Crop Calendar</span>
           </Button>
           <Button 
             variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-farm-green hover:text-white group"
+            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
           >
             <Cloud className="text-2xl mb-2" />
             <span className="text-sm font-medium">Weather Info</span>
           </Button>
           <Button 
             variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-farm-green hover:text-white group"
+            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
           >
             <TrendingUp className="text-2xl mb-2" />
             <span className="text-sm font-medium">Market Prices</span>
           </Button>
           <Button 
             variant="ghost" 
-            className="flex flex-col items-center p-4 h-auto hover:bg-farm-green hover:text-white group"
+            className="flex flex-col items-center p-4 h-auto hover:bg-green-600 hover:text-white group"
           >
             <Book className="text-2xl mb-2" />
             <span className="text-sm font-medium">Learning Hub</span>
@@ -165,7 +165,7 @@ export default function Home() {
       <Card className="p-8">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-2xl font-bold text-gray-900">Recent Activity</h3>
-          <Button variant="ghost" className="text-farm-green hover:text-green-600">
+          <Button variant="ghost" className="text-green-600 hover:text-green-700">
             View All
           </Button>
         </div>
@@ -180,9 +180,9 @@ export default function Home() {
             activities.slice(0, 3).map((activity) => (
               <div key={activity.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
                 <div className={`p-2 rounded-full ${
-                  activity.type === 'chat' ? 'bg-farm-green' :
+                  activity.type === 'chat' ? 'bg-green-600' :
                   activity.type === 'disease_detection' ? 'bg-red-500' :
-                  'bg-leaf-green'
+                  'bg-green-600'
                 }`}>
                   {activity.type === 'chat' && <MessageCircle className="text-white w-4 h-4" />}
                   {activity.type === 'disease_detection' && <Search className="text-white w-4 h-4" />}
