@@ -4,11 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sprout, Menu } from "lucide-react";
-import { useLanguage } from "@/lib/language";
+// import { useLanguage } from "@/lib/language";
 
 export default function Header() {
   const [location] = useLocation();
-  const { language, setLanguage, languages } = useLanguage();
+  const language = "en";
+  const setLanguage = (lang: string) => {};
+  const languages = [
+    { code: "en", name: "EN", nativeName: "English" },
+    { code: "ta", name: "TA", nativeName: "தமிழ்" },
+    { code: "kn", name: "KN", nativeName: "ಕನ್ನಡ" },
+    { code: "hi", name: "HI", nativeName: "हिंदी" },
+    { code: "ml", name: "ML", nativeName: "മലയാളം" },
+  ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {

@@ -4,14 +4,14 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { useLanguage } from "@/lib/language";
+// import { useLanguage } from "@/lib/language";
 import { MessageCircle, User, Send, Loader2 } from "lucide-react";
 import type { ChatMessage } from "@shared/schema";
 
 export default function ChatInterface() {
   const [message, setMessage] = useState("");
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { language } = useLanguage();
+  const language = "en";
   const queryClient = useQueryClient();
 
   const { data: chatHistory = [], isLoading } = useQuery<ChatMessage[]>({
