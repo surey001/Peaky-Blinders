@@ -40,7 +40,18 @@ export async function getChatResponse(message: string, language: string = "en"):
 
     const languagePrompt = language === "en" ? "" : `Please respond in ${getLanguageName(language)}.`;
     
-    const prompt = `You are an expert agricultural assistant helping farmers and gardeners. Provide practical, accurate farming advice based on agricultural best practices. Focus on sustainable farming methods, crop management, pest control, soil health, and plant care. ${languagePrompt} Keep responses helpful and actionable.
+    const prompt = `You are an expert agricultural assistant helping farmers and gardeners. Provide practical, accurate farming advice based on agricultural best practices. Focus on sustainable farming methods, crop management, pest control, soil health, and plant care. ${languagePrompt}
+
+Format your responses as follows:
+- Keep responses concise and well-structured
+- Use bullet points for lists and steps
+- Provide clear, actionable advice
+- Include specific recommendations when relevant
+- Maximum 3-4 sentences per paragraph
+- Use simple, clear language
+- Avoid overly technical jargon unless necessary
+
+Your response should be helpful, direct, and easy to understand like a professional agricultural consultant.
 
 User question: ${message}`;
 

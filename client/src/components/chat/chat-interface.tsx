@@ -97,8 +97,27 @@ export default function ChatInterface() {
                   <div className="bg-farm-green p-2 rounded-full w-8 h-8 flex items-center justify-center">
                     <MessageCircle className="text-white w-4 h-4" />
                   </div>
-                  <div className="bg-gray-100 rounded-lg p-3 flex-1">
-                    <p className="text-sm text-gray-700 whitespace-pre-wrap">{chat.response}</p>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex-1">
+                    <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap prose prose-sm max-w-none">
+                      {chat.response.split('\n').map((line, index) => {
+                        if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
+                          return (
+                            <div key={index} className="flex items-start gap-2 my-1">
+                              <span className="text-farm-green">•</span>
+                              <span>{line.replace(/^[•-]\s*/, '')}</span>
+                            </div>
+                          );
+                        } else if (line.trim().length > 0) {
+                          return (
+                            <p key={index} className="my-2 leading-relaxed">
+                              {line}
+                            </p>
+                          );
+                        } else {
+                          return <br key={index} />;
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>

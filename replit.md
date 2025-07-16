@@ -8,6 +8,15 @@ This is a full-stack agricultural assistant application built with React, Expres
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### Migration to Replit Environment (July 16, 2025)
+- Successfully migrated AI Farm Tool from Replit Agent to Replit environment
+- Improved AI chat response formatting with better structured, concise responses
+- Fixed voice assistant language handling to properly update recognition language
+- Enhanced chat interface with better formatting for bullet points and structured responses
+- Applied proper client/server separation and security practices
+
 ## System Architecture
 
 ### Frontend Architecture

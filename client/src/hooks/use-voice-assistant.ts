@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useLanguage } from "../lib/language";
 import { useTranslation } from "../lib/translations";
@@ -56,6 +56,13 @@ export function useVoiceAssistant() {
         setIsSupported(false);
         console.warn('Speech recognition not supported in this browser');
       }
+    }
+  }, [language]);
+
+  // Update recognition language when language changes
+  useEffect(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.lang = getLanguageCode(language);
     }
   }, [language]);
 
