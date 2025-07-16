@@ -58,14 +58,14 @@ const cropData = {
 export default function CropCalendar() {
   const { language } = useLanguage();
   const { t } = useTranslation(language);
-  const [selectedCrop, setSelectedCrop] = useState<string>("");
+  const [selectedCrop, setSelectedCrop] = useState<string>("none");
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredCrops = Object.entries(cropData).filter(([key, crop]) =>
     crop.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const selectedCropData = selectedCrop ? cropData[selectedCrop as keyof typeof cropData] : null;
+  const selectedCropData = selectedCrop && selectedCrop !== "none" ? cropData[selectedCrop as keyof typeof cropData] : null;
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -97,6 +97,7 @@ export default function CropCalendar() {
                   <SelectValue placeholder="Choose a crop" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="none">Select a crop</SelectItem>
                   {filteredCrops.map(([key, crop]) => (
                     <SelectItem key={key} value={key}>
                       {crop.name}

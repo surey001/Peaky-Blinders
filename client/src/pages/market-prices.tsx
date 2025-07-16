@@ -77,13 +77,13 @@ const marketData = {
 export default function MarketPrices() {
   const { language } = useLanguage();
   const { t } = useTranslation(language);
-  const [selectedLocation, setSelectedLocation] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredCrops = marketData.crops.filter(crop => {
     const matchesSearch = crop.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = !selectedLocation || crop.location === selectedLocation;
+    const matchesLocation = selectedLocation === "all" || crop.location === selectedLocation;
     return matchesSearch && matchesLocation;
   });
 
@@ -121,7 +121,7 @@ export default function MarketPrices() {
                 <SelectValue placeholder="Select location" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Locations</SelectItem>
+                <SelectItem value="all">All Locations</SelectItem>
                 {marketData.locations.map((location) => (
                   <SelectItem key={location} value={location}>
                     {location}
@@ -134,7 +134,7 @@ export default function MarketPrices() {
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Categories</SelectItem>
+                <SelectItem value="all">All Categories</SelectItem>
                 {marketData.categories.map((category) => (
                   <SelectItem key={category} value={category}>
                     {category}
