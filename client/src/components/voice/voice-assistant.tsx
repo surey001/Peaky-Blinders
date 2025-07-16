@@ -46,12 +46,12 @@ export default function VoiceAssistant() {
       </div>
       
       <div className="text-xs text-muted-foreground text-center max-w-xs">
-        <p className="mb-2">Try saying:</p>
+        <p className="mb-2">{t('try_saying')}</p>
         <div className="space-y-1">
-          <div>"chat" or "talk to assistant"</div>
-          <div>"disease" or "health check"</div>
-          <div>"plant care" or "gardening"</div>
-          <div>"home" or "go back"</div>
+          <div>{t('voice_commands.open_chat')}</div>
+          <div>{t('voice_commands.open_disease')}</div>
+          <div>{t('voice_commands.open_plant_care')}</div>
+          <div>{t('voice_commands.go_home')}</div>
         </div>
       </div>
     </div>

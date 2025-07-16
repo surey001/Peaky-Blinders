@@ -6,11 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useLanguage } from "@/lib/language";
 import { useTranslation } from "@/lib/translations";
-import { MessageCircle, User, Send, Loader2 } from "lucide-react";
+import { MessageCircle, User, Send, Loader2, Volume2, VolumeX } from "lucide-react";
 import type { ChatMessage } from "@shared/schema";
 
 export default function ChatInterface() {
   const [message, setMessage] = useState("");
+  const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
   const { t } = useTranslation(language);
@@ -25,12 +26,60 @@ export default function ChatInterface() {
       const response = await apiRequest("POST", "/api/chat/message", data);
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['/api/chat/history'] });
       queryClient.invalidateQueries({ queryKey: ['/api/activities'] });
       setMessage("");
+      
+      // Speak the AI response if speech is enabled
+      if (isSpeechEnabled && data.response) {
+        speakText(data.response, language);
+      }
     },
   });
+
+  const getLanguageCode = (lang: string): string => {
+    const langMap: { [key: string]: string } = {
+      'en': 'en-US',
+      'ta': 'ta-IN',
+      'kn': 'kn-IN',
+      'hi': 'hi-IN',
+      'ml': 'ml-IN'
+    };
+    return langMap[lang] || 'en-US';
+  };
+
+  const speakText = (text: string, language: string) => {
+    if ('speechSynthesis' in window) {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = getLanguageCode(language);
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      utterance.volume = 0.8;
+      
+      // Find a voice that matches the language
+      const voices = window.speechSynthesis.getVoices();
+      const matchingVoice = voices.find(voice => 
+        voice.lang.startsWith(getLanguageCode(language).split('-')[0])
+      );
+      
+      if (matchingVoice) {
+        utterance.voice = matchingVoice;
+      }
+      
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const toggleSpeech = () => {
+    setIsSpeechEnabled(!isSpeechEnabled);
+    if (!isSpeechEnabled) {
+      window.speechSynthesis.cancel();
+    }
+  };
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
@@ -58,12 +107,23 @@ export default function ChatInterface() {
     <div className="flex flex-col h-[600px]">
       {/* Chat Header */}
       <div className="bg-gradient-to-r from-green-600 to-green-700 p-4 text-white">
-        <div className="flex items-center space-x-3">
-          <MessageCircle className="text-2xl" />
-          <div>
-            <h3 className="text-lg font-semibold">{t("chat_feature_title")}</h3>
-            <p className="text-green-100 text-sm">{t("chat_subtitle")}</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <MessageCircle className="text-2xl" />
+            <div>
+              <h3 className="text-lg font-semibold">{t("chat_feature_title")}</h3>
+              <p className="text-green-100 text-sm">{t("chat_subtitle")}</p>
+            </div>
           </div>
+          <Button
+            onClick={toggleSpeech}
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-green-800"
+            title={isSpeechEnabled ? "Disable speech" : "Enable speech"}
+          >
+            {isSpeechEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+          </Button>
         </div>
       </div>
 

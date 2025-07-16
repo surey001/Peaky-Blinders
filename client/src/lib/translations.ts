@@ -59,11 +59,16 @@ export const translations = {
     
     // Voice commands
     "voice_commands": {
-      "open_chat": "open chat",
-      "open_disease": "open disease detection",
-      "open_plant_care": "open plant care",
-      "go_home": "go home"
-    }
+      "open_chat": "\"chat\" or \"talk to assistant\"",
+      "open_disease": "\"disease\" or \"health check\"",
+      "open_plant_care": "\"plant care\" or \"gardening\"",
+      "go_home": "\"home\" or \"go back\""
+    },
+    
+    // Additional UI
+    "opening": "Opening",
+    "try_saying": "Try saying:",
+    "voice_not_supported": "Voice recognition not supported in this browser"
   },
   
   ta: {
@@ -125,11 +130,16 @@ export const translations = {
     
     // Voice commands
     "voice_commands": {
-      "open_chat": "அரட்டை திற",
-      "open_disease": "நோய் கண்டறிதல் திற",
-      "open_plant_care": "தாவர பராமரிப்பு திற",
-      "go_home": "முகப்புக்கு செல்"
-    }
+      "open_chat": "\"அரட்டை\" அல்லது \"உதவியாளருடன் பேசு\"",
+      "open_disease": "\"நோய்\" அல்லது \"உடல்நலம்\"",
+      "open_plant_care": "\"தாவர பராமரிப்பு\" அல்லது \"தோட்டக்கலை\"",
+      "go_home": "\"முகப்பு\" அல்லது \"திரும்பு\""
+    },
+    
+    // Additional UI
+    "opening": "திறக்கிறது",
+    "try_saying": "இதைச் சொல்லி பாருங்கள்:",
+    "voice_not_supported": "இந்த உலாவியில் குரல் அங்கீகாரம் ஆதரிக்கப்படவில்லை"
   },
   
   kn: {
@@ -191,11 +201,16 @@ export const translations = {
     
     // Voice commands
     "voice_commands": {
-      "open_chat": "ಚಾಟ್ ತೆರೆಯಿರಿ",
-      "open_disease": "ರೋಗ ಪತ್ತೆ ತೆರೆಯಿರಿ",
-      "open_plant_care": "ಸಸ್ಯ ಆರೈಕೆ ತೆರೆಯಿರಿ",
-      "go_home": "ಮುಖ್ಯಕ್ಕೆ ಹೋಗಿ"
-    }
+      "open_chat": "\"ಚಾಟ್\" ಅಥವಾ \"ಸಹಾಯಕರೊಂದಿಗೆ ಮಾತನಾಡು\"",
+      "open_disease": "\"ರೋಗ\" ಅಥವಾ \"ಆರೋಗ್ಯ\"",
+      "open_plant_care": "\"ಸಸ್ಯ ಆರೈಕೆ\" ಅಥವಾ \"ತೋಟಗಾರಿಕೆ\"",
+      "go_home": "\"ಮುಖ್ಯ\" ಅಥವಾ \"ಹಿಂದಿರುಗಿ\""
+    },
+    
+    // Additional UI
+    "opening": "ತೆರೆಯುತ್ತಿದೆ",
+    "try_saying": "ಇದನ್ನು ಹೇಳಿ ನೋಡಿ:",
+    "voice_not_supported": "ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ"
   },
   
   hi: {
@@ -257,11 +272,16 @@ export const translations = {
     
     // Voice commands
     "voice_commands": {
-      "open_chat": "चैट खोलें",
-      "open_disease": "रोग का पता लगाना खोलें",
-      "open_plant_care": "पौधों की देखभाल खोलें",
-      "go_home": "मुखपृष्ठ पर जाएं"
-    }
+      "open_chat": "\"चैट\" या \"सहायक से बात करें\"",
+      "open_disease": "\"रोग\" या \"स्वास्थ्य\"",
+      "open_plant_care": "\"पौधे की देखभाल\" या \"बागवानी\"",
+      "go_home": "\"होम\" या \"वापस जाएं\""
+    },
+    
+    // Additional UI
+    "opening": "खोल रहा है",
+    "try_saying": "कहने की कोशिश करें:",
+    "voice_not_supported": "इस ब्राउज़र में आवाज़ पहचान समर्थित नहीं है"
   },
   
   ml: {
@@ -323,11 +343,16 @@ export const translations = {
     
     // Voice commands
     "voice_commands": {
-      "open_chat": "ചാറ്റ് തുറക്കുക",
-      "open_disease": "രോഗ കണ്ടെത്തൽ തുറക്കുക",
-      "open_plant_care": "സസ്യ പരിചരണം തുറക്കുക",
-      "go_home": "ഹോമിലേക്ക് പോകുക"
-    }
+      "open_chat": "\"ചാറ്റ്\" അല്ലെങ്കിൽ \"സഹായിയുമായി സംസാരിക്കുക\"",
+      "open_disease": "\"രോഗം\" അല്ലെങ്കിൽ \"ആരോഗ്യം\"",
+      "open_plant_care": "\"സസ്യ പരിചരണം\" അല്ലെങ്കിൽ \"പൂന്തോട്ടപരിപാലനം\"",
+      "go_home": "\"ഹോം\" അല്ലെങ്കിൽ \"തിരികെ പോകുക\""
+    },
+    
+    // Additional UI
+    "opening": "തുറക്കുന്നു",
+    "try_saying": "ഇത് പറഞ്ഞു നോക്കൂ:",
+    "voice_not_supported": "ഈ ബ്രൗസറിൽ വോയ്സ് റെക്കഗ്നിഷൻ പിന്തുണയ്ക്കുന്നില്ല"
   }
 };
 
