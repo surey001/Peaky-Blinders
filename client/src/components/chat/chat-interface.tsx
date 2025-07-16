@@ -4,14 +4,16 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-// import { useLanguage } from "@/lib/language";
+import { useLanguage } from "@/lib/language";
+import { useTranslation } from "@/lib/translations";
 import { MessageCircle, User, Send, Loader2 } from "lucide-react";
 import type { ChatMessage } from "@shared/schema";
 
 export default function ChatInterface() {
   const [message, setMessage] = useState("");
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const language = "en";
+  const { language } = useLanguage();
+  const { t } = useTranslation(language);
   const queryClient = useQueryClient();
 
   const { data: chatHistory = [], isLoading } = useQuery<ChatMessage[]>({
@@ -59,8 +61,8 @@ export default function ChatInterface() {
         <div className="flex items-center space-x-3">
           <MessageCircle className="text-2xl" />
           <div>
-            <h3 className="text-lg font-semibold">AI Farming Assistant</h3>
-            <p className="text-green-100 text-sm">Ask me anything about farming and agriculture</p>
+            <h3 className="text-lg font-semibold">{t("chat_feature_title")}</h3>
+            <p className="text-green-100 text-sm">{t("chat_subtitle")}</p>
           </div>
         </div>
       </div>

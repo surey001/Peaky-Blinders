@@ -3,9 +3,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { MessageCircle, Search, Leaf, Calendar, Cloud, TrendingUp, Book } from "lucide-react";
+import { useLanguage } from "@/lib/language";
+import { useTranslation } from "@/lib/translations";
+import VoiceAssistant from "@/components/voice/voice-assistant";
 import type { Activity } from "@shared/schema";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const { t } = useTranslation(language);
   const { data: activities = [], isLoading } = useQuery<Activity[]>({
     queryKey: ['/api/activities'],
   });
@@ -24,11 +29,18 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-white text-center">
-              <h2 className="text-4xl font-bold mb-4">Empowering Farmers with AI</h2>
-              <p className="text-xl">Get personalized agricultural guidance, disease detection, and plant care recommendations</p>
+              <h2 className="text-4xl font-bold mb-4">{t("welcome_title")}</h2>
+              <p className="text-xl">{t("welcome_subtitle")}</p>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Voice Assistant Section */}
+      <div className="text-center mb-12">
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("voice_assistant")}</h3>
+        <p className="text-gray-600 mb-6">{t("voice_commands_hint") || "Use voice commands to navigate - say things like 'open chat', 'disease detection', or 'plant care'"}</p>
+        <VoiceAssistant />
       </div>
 
       {/* Three Main Modules */}
@@ -38,9 +50,9 @@ export default function Home() {
           <div className="bg-gradient-to-r from-farm-green to-leaf-green p-6 text-white rounded-t-xl">
             <div className="flex items-center space-x-3 mb-4">
               <MessageCircle className="text-2xl" />
-              <h3 className="text-xl font-semibold">AI Chat Assistant</h3>
+              <h3 className="text-xl font-semibold">{t("chat_feature_title")}</h3>
             </div>
-            <p className="text-green-100">Get instant farming guidance and expert advice</p>
+            <p className="text-green-100">{t("chat_feature_desc")}</p>
           </div>
           <CardContent className="p-6">
             <div className="space-y-4 mb-6">
@@ -55,7 +67,7 @@ export default function Home() {
             </div>
             <Link href="/chat">
               <Button className="w-full bg-farm-green hover:bg-green-600">
-                Start Chatting
+                {t("get_started")}
               </Button>
             </Link>
           </CardContent>
@@ -66,9 +78,9 @@ export default function Home() {
           <div className="bg-gradient-to-r from-red-500 to-orange-500 p-6 text-white rounded-t-xl">
             <div className="flex items-center space-x-3 mb-4">
               <Search className="text-2xl" />
-              <h3 className="text-xl font-semibold">Disease Detection</h3>
+              <h3 className="text-xl font-semibold">{t("disease_feature_title")}</h3>
             </div>
-            <p className="text-red-100">Upload plant images for accurate disease diagnosis</p>
+            <p className="text-red-100">{t("disease_feature_desc")}</p>
           </div>
           <CardContent className="p-6">
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-6">
@@ -78,7 +90,7 @@ export default function Home() {
             </div>
             <Link href="/disease-detection">
               <Button className="w-full bg-red-500 hover:bg-red-600">
-                Analyze Plant Health
+                {t("analyze")}
               </Button>
             </Link>
           </CardContent>
@@ -89,9 +101,9 @@ export default function Home() {
           <div className="bg-gradient-to-r from-leaf-green to-green-600 p-6 text-white rounded-t-xl">
             <div className="flex items-center space-x-3 mb-4">
               <Leaf className="text-2xl" />
-              <h3 className="text-xl font-semibold">Plant Care</h3>
+              <h3 className="text-xl font-semibold">{t("care_feature_title")}</h3>
             </div>
-            <p className="text-green-100">Identify plants and get personalized care tips</p>
+            <p className="text-green-100">{t("care_feature_desc")}</p>
           </div>
           <CardContent className="p-6">
             <div className="space-y-4 mb-6">
@@ -107,7 +119,7 @@ export default function Home() {
             </div>
             <Link href="/plant-care">
               <Button className="w-full bg-leaf-green hover:bg-green-700">
-                Get Care Guide
+                {t("search")}
               </Button>
             </Link>
           </CardContent>

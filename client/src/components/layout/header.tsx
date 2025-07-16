@@ -4,19 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sprout, Menu } from "lucide-react";
-// import { useLanguage } from "@/lib/language";
+import { useLanguage } from "@/lib/language";
+import { useTranslation } from "@/lib/translations";
+import VoiceAssistant from "@/components/voice/voice-assistant";
 
 export default function Header() {
   const [location] = useLocation();
-  const language = "en";
-  const setLanguage = (lang: string) => {};
-  const languages = [
-    { code: "en", name: "EN", nativeName: "English" },
-    { code: "ta", name: "TA", nativeName: "தமிழ்" },
-    { code: "kn", name: "KN", nativeName: "ಕನ್ನಡ" },
-    { code: "hi", name: "HI", nativeName: "हिंदी" },
-    { code: "ml", name: "ML", nativeName: "മലയാളം" },
-  ];
+  const { language, setLanguage, languages } = useLanguage();
+  const { t } = useTranslation(language);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
@@ -26,9 +21,9 @@ export default function Header() {
   };
 
   const navItems = [
-    { path: "/chat", label: "Chat Assistant" },
-    { path: "/disease-detection", label: "Disease Detection" },
-    { path: "/plant-care", label: "Plant Care" },
+    { path: "/chat", label: t("chat") },
+    { path: "/disease-detection", label: t("disease_detection") },
+    { path: "/plant-care", label: t("plant_care") },
   ];
 
   return (
@@ -41,8 +36,8 @@ export default function Header() {
               <Sprout className="text-white text-xl" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">AI FARMTOOL</h1>
-              <p className="text-xs text-gray-500">Smart Agricultural Assistant</p>
+              <h1 className="text-xl font-bold text-gray-900">{t("ai_farmtool")}</h1>
+              <p className="text-xs text-gray-500">{t("welcome_subtitle")}</p>
             </div>
           </Link>
 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export interface Language {
   code: string;
@@ -23,7 +23,20 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(() => {
+    // Try to load from localStorage first
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('ai-farmtool-language') || "en";
+    }
+    return "en";
+  });
+
+  // Save to localStorage when language changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('ai-farmtool-language', language);
+    }
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, languages }}>
