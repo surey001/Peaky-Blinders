@@ -63,6 +63,7 @@ export function useVoiceAssistant() {
   useEffect(() => {
     if (recognitionRef.current) {
       recognitionRef.current.lang = getLanguageCode(language);
+      console.log(`Voice recognition language updated to: ${getLanguageCode(language)}`);
     }
   }, [language]);
 
@@ -222,9 +223,9 @@ export function useVoiceAssistant() {
   }, [isListening]);
 
   // Initialize on mount
-  useState(() => {
+  useEffect(() => {
     initializeVoiceRecognition();
-  });
+  }, [initializeVoiceRecognition]);
 
   return {
     isListening,

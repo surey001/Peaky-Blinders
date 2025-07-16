@@ -10,6 +10,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### Multilingual Support Enhancement (July 16, 2025)
+- Enhanced AI chat responses to properly respond in selected language (Tamil, Hindi, Kannada, Malayalam)
+- Improved voice recognition with better language-specific keyword matching
+- Fixed voice assistant to reinitialize when language changes
+- Added comprehensive multilingual voice commands with native script support
+- Updated Gemini API prompts for accurate non-English responses
+
 ### Quick Actions Implementation (July 16, 2025)
 - Added comprehensive Quick Actions functionality with four new features:
   - **Crop Calendar**: Interactive planting and harvesting schedules with detailed growing guides
@@ -19,6 +26,7 @@ Preferred communication style: Simple, everyday language.
 - Updated navigation header with dropdown menu for easy access to new features
 - Enhanced mobile navigation with organized feature sections
 - Fixed color consistency issues throughout the application
+- Fixed Select component errors by replacing empty string values with proper defaults
 
 ### Migration to Replit Environment (July 16, 2025)
 - Successfully migrated AI Farm Tool from Replit Agent to Replit environment

@@ -38,9 +38,16 @@ export async function getChatResponse(message: string, language: string = "en"):
       throw new Error("Gemini API key is not configured");
     }
 
-    const languagePrompt = language === "en" ? "" : `Please respond in ${getLanguageName(language)}.`;
+    const languageName = getLanguageName(language);
+    const isNonEnglish = language !== "en";
     
-    const prompt = `You are an expert agricultural assistant helping farmers and gardeners. Provide practical, accurate farming advice based on agricultural best practices. Focus on sustainable farming methods, crop management, pest control, soil health, and plant care. ${languagePrompt}
+    const languageInstruction = isNonEnglish 
+      ? `IMPORTANT: You must respond entirely in ${languageName}. Do not use English at all. Write your complete response in the ${languageName} language using native script and vocabulary.`
+      : "";
+    
+    const prompt = `You are an expert agricultural assistant helping farmers and gardeners. Provide practical, accurate farming advice based on agricultural best practices. Focus on sustainable farming methods, crop management, pest control, soil health, and plant care.
+
+${languageInstruction}
 
 Format your responses as follows:
 - Keep responses concise and well-structured
@@ -48,14 +55,14 @@ Format your responses as follows:
 - Provide clear, actionable advice
 - Include specific recommendations when relevant
 - Maximum 3-4 sentences per paragraph
-- Use simple, clear language
+- Use simple, clear language appropriate for farmers
 - Avoid overly technical jargon unless necessary
 
-Your response should be helpful, direct, and easy to understand like a professional agricultural consultant.
+Your response should be helpful, direct, and easy to understand like a professional agricultural consultant speaking in ${languageName}.
 
 User question: ${message}`;
 
-    console.log("Sending request to Gemini with message:", message.substring(0, 50));
+    console.log("Sending request to Gemini with message:", message.substring(0, 50), "in language:", languageName);
 
     const response = await ai.models.generateContent({
       model: "gemini-1.5-flash",
@@ -182,10 +189,10 @@ export async function getPlantCareInfo(plantQuery: string): Promise<PlantCareInf
 function getLanguageName(code: string): string {
   const languages: Record<string, string> = {
     "en": "English",
-    "ta": "Tamil",
-    "kn": "Kannada", 
-    "hi": "Hindi",
-    "ml": "Malayalam"
+    "ta": "Tamil (தமிழ்)",
+    "kn": "Kannada (ಕನ್ನಡ)", 
+    "hi": "Hindi (हिंदी)",
+    "ml": "Malayalam (മലയാളം)"
   };
   return languages[code] || "English";
 }
